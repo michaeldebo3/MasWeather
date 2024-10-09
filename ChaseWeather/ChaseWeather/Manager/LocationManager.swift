@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 
+/// Handles location related permisisions as well as last known location.
 final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var lastKnownLocation: CLLocationCoordinate2D?

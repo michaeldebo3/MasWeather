@@ -18,9 +18,7 @@ struct ChaseWeatherTests {
             lon: -73.935242),
         weather:
             [.init(
-                id: 233,
-                overview: "partly cloudy",
-                summary: "clouds",
+                summary: "partly cloudy",
                 iconCode: "04n")
             ],
         main:
@@ -98,9 +96,7 @@ struct MockNetworkService: NetworkServiceable {
                     lon: -73.935242),
                 weather:
                     [.init(
-                        id: 233,
-                        overview: "partly cloudy",
-                        summary: "clouds",
+                        summary: "partly cloudy",
                         iconCode: "04n")
                     ],
                 main:

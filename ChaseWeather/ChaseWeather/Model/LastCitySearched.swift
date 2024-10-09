@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// User defaults used to persist last city searched that prevents the user from having to type the same name upon multiple consecutive uses of the app..
 let lastCitySearchedUserDefaultKey = "com.ollify.ChaseWeather.lastCitySearched"
 
 var LAST_CITY_SEARCHED: String {

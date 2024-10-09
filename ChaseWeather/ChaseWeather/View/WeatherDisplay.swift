@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WeatherDisplay: View {
 
+    /// error captured by the struct wide variable when API throws an error.
     @State var error: Error? = nil
     @ObservedObject var weatherDisplayViewModel = WeatherDisplayViewModel(
         service: NetworkService()
@@ -18,7 +19,7 @@ struct WeatherDisplay: View {
         ZStack {
             let backgroundImageName = weatherDisplayViewModel.weatherData?.weather.first?.iconCode ?? "01d"
             let isDay = backgroundImageName.last == "d"
-            Image(weatherDisplayViewModel.imageFromIcon(name: backgroundImageName))
+            Image(weatherDisplayViewModel.imageFromIconCode(backgroundImageName))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all)
@@ -88,6 +89,7 @@ extension View {
 
 struct LocalizedAlertError: LocalizedError {
     let underlyingError: LocalizedError
+    /// localizedDescription shown during error handling.
     var localizedDescription: String? {
         underlyingError.localizedDescription
     }

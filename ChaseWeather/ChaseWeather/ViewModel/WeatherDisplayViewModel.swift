@@ -15,7 +15,7 @@ import SwiftUI
     var city : String {
         LAST_CITY_SEARCHED
     }
-    /// Dependency injection of NetworkServiceable that allows for implementing Mock service in testing.
+    /// Dependency injection of NetworkServiceable that allows for implementing Mock network service in testing.
     init(service: NetworkServiceable) {
         self.service = service
     }
@@ -23,12 +23,12 @@ import SwiftUI
     ///  Returns the name of the asset image that is used as WeatherDisplay's background image.
     ///
     /// - Parameters:
-    ///   - name: Name of icon returned from [API]
+    ///   - name: Icon code returned from [API]
     /// - Returns: Background image name
     ///
     /// [API]: https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-    func imageFromIcon(name: String) -> String {
-        switch name {
+    func imageFromIconCode(_ code: String) -> String {
+        switch code {
         case "01d":
             return "blueSky"
         case "01n":

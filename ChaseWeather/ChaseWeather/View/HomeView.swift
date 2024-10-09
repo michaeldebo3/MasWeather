@@ -16,6 +16,8 @@ struct HomeView: View {
     /// Determines when to display the WeatherDisplay view.
     @State var isShowingWeather = false
     let vm = HomeViewModel(service: NetworkService())
+    ///  Error is thrown if there's an error getting location name from coordinates using [API].
+    /// [API]: http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={long}&limit=2&appid={API key}
     @State var error: Error? = nil
     
     var body: some View {
@@ -57,7 +59,7 @@ struct HomeView: View {
         .errorAlert(error: $error)
     }
     
-    /// Sets the `LAST_CITY_SEARCHED` to the name of the user's location when possible, e.g. after appropriate permissions have been given. Otherwise an error is handled. If there is no error, then the DisplayWeather view is launched.
+    /// Sets the `LAST_CITY_SEARCHED` to the name of the user's location when possible, e.g. after appropriate permissions have been given. Otherwise an error is thrown and handled. If there is no error, then the DisplayWeather view is launched.
     func getWeatherByCoordinates() async {
         if let coordinate = locationManager.lastKnownLocation {
             do {

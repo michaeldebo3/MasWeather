@@ -6,8 +6,9 @@
 //
 
 struct WeatherOverview: Codable, Equatable {
-    /// `summary` is shown on WeatherDisplay view.
+    /// Shown on WeatherDisplay view.
     let summary: String
+    /// Used to fetch the icon and to indicate which background image to show.
     let iconCode: String
 }
 

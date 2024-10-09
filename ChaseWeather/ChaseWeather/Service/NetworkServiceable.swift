@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Allows the app to use a class `NetworkService` that inherits from `NetworkServiceable` while also allowing unit tests to use a class
+/// `MockNetworkService` that also inherit from `NetworkServiceable`.
 protocol NetworkServiceable {
     func fetchData(city: String) async throws -> WeatherData?
     func fetchIcon(iconCode: String) async throws -> UIImage?
