@@ -8,6 +8,7 @@
 struct Wind: Codable, Equatable {
     /// In meters per second.
     let speed: Double
+    /// 0 degrees is perfectly North.
     let degrees: Int
 }
 
