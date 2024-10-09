@@ -65,24 +65,3 @@ struct HomeView: View {
         }
     }
 }
-
-#Preview{
-    HomeView()
-}
-
-struct BigButton: View {
-    var text: String
-    var clicked: (() -> Void) /// use closure for callback
-    
-    var body: some View {
-        Button(action: clicked) { /// call the closure here
-            HStack {
-                Text(text)
-            }
-            .foregroundColor(.black)
-                .padding(.all)
-                .background(LinearGradient(gradient: Gradient(colors: [.yellow]), startPoint: .leading, endPoint: .trailing))
-            .cornerRadius(40)
-        }
-    }
-}

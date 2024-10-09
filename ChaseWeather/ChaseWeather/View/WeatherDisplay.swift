@@ -17,6 +17,7 @@ struct WeatherDisplay: View {
     var body: some View {
         ZStack {
             let backgroundImageName = weatherDisplayViewModel.weatherData?.weather.first?.iconCode ?? "01d"
+            let isDay = backgroundImageName.last == "d"
             Image(weatherDisplayViewModel.imageFromIcon(name: backgroundImageName))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -26,32 +27,33 @@ struct WeatherDisplay: View {
 
                         VStack(spacing: 12) {
                             Spacer(minLength: 50)
-                            Text(weatherData.name)
+                            WeatherText(text: weatherData.name, isDay: isDay)
                                 .font(.system(size: 36))
                             Image(uiImage: weatherIcon)
                                 .imageScale(.large)
                                 .foregroundStyle(.tint)
                             let summaryArray = weatherData.weather.compactMap { $0.summary }
                             if !summaryArray.isEmpty {
-                                Text(summaryArray.first!.capitalizedSentence)
+                                WeatherText(text: summaryArray.first!.capitalizedSentence, isDay: isDay)
                             }
                             let currentTempF = Int(weatherData.main.tempInFahrenheit.rounded())
                             let currentTempC = Int(weatherData.main.tempInCelsius.rounded())
-                            Text("\(currentTempF)F / \(currentTempC)C")
+                            WeatherText(text: "\(currentTempF)F / \(currentTempC)C", isDay: isDay)
                             let feelsLikeTempF = Int(weatherData.main.feelsLikeInFahrenheit.rounded())
                             let feelsLikeTempC = Int(weatherData.main.feelsLikeInCelsius.rounded())
-                            Text("Feels like \(feelsLikeTempF)F / \(feelsLikeTempC)C")
+                            WeatherText(text: "Feels like \(feelsLikeTempF)F / \(feelsLikeTempC)C", isDay: isDay)
                             let maxTempF = Int(weatherData.main.maxTempInFahrenheit.rounded())
                             let maxTempC = Int(weatherData.main.maxTempInCelsius.rounded())
-                            Text("Today's high: \(maxTempF)F / \(maxTempC)C")
+                            WeatherText(text: "Today's high: \(maxTempF)F / \(maxTempC)C", isDay: isDay)
                             let minTempF = Int(weatherData.main.minTempInFahrenheit.rounded())
                             let minTempC = Int(weatherData.main.minTempInCelsius.rounded())
-                            Text("Today's low: \(minTempF)F / \(minTempC)C")
-                            Text("Humidity: \(weatherData.main.humidity)%")
+                            WeatherText(text: "Today's low: \(minTempF)F / \(minTempC)C", isDay: isDay)
+                            WeatherText(text: "Humidity: \(weatherData.main.humidity)%", isDay: isDay)
                             let windSpeed = Int(weatherData.wind.speedInMPH.rounded())
-                            Text("Wind blowing \(weatherDisplayViewModel.getDirectionFromDegrees(weatherData.wind.degrees)) at \(windSpeed) mph")
-                            Text("Sunrise at \(weatherData.sunriseAsTime)")
-                            Text("Sunset at \(weatherData.sunsetAsTime)")
+                            WeatherText(text: "Wind blowing \(weatherDisplayViewModel.getDirectionFromDegrees(weatherData.wind.degrees)) at \(windSpeed) mph", isDay: isDay)
+                            WeatherText(text: "Sunrise at \(weatherData.sunriseAsTime)", isDay: isDay)
+                            WeatherText(text: "Sunset at \(weatherData.sunsetAsTime)", isDay: isDay)
+                            Spacer(minLength: 50)
                         }
                     }
             }.defaultScrollAnchor(.top)
