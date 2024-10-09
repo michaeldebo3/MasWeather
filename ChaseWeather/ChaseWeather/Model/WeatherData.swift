@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Highest level data object for weather data.
 struct WeatherData: Codable, Equatable {
     let coord: Coordinates
     let weather: [WeatherOverview]
@@ -20,6 +21,7 @@ struct WeatherData: Codable, Equatable {
     let code: Int
 }
 
+/// Translates UNIX timestamp of sunrise and sunset combined with the timezone and timeOffset into human readable time values.
 extension WeatherData {
     var timeOffset: Int { 14400 }
     

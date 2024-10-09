@@ -5,6 +5,8 @@
 //  Created by Michael deBoisblanc on 10/8/24.
 //
 
+
+/// Temperatures and humidity, with an extension converting Kelvin to Celsius and Fahrenheit,
 struct WeatherDetails: Codable, Equatable {
     let tempInKelvin: Double
     let feelsLikeInKelvin: Double

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let lastCitySearchedUserDefaultKey = "com.ollify.MphasisWeather.lastCitySearched"
+let lastCitySearchedUserDefaultKey = "com.ollify.ChaseWeather.lastCitySearched"
 
 var LAST_CITY_SEARCHED: String {
     get {

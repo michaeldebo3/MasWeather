@@ -8,17 +8,25 @@
 import SwiftUI
 
 @MainActor class WeatherDisplayViewModel : ObservableObject {
-    @Published var icon: UIImage?
+    @Published var icon: UIImage? = nil
     @Published var weatherData: WeatherData? = nil
     private var service: NetworkServiceable
+    /// Returns user default value for last city searched.
     var city : String {
         LAST_CITY_SEARCHED
     }
-
+    /// Dependency injection of NetworkServiceable that allows for implementing Mock service in testing.
     init(service: NetworkServiceable) {
         self.service = service
     }
     
+    ///  Returns the name of the asset image that is used as WeatherDisplay's background image.
+    ///
+    /// - Parameters:
+    ///   - name: Name of icon returned from [API]
+    /// - Returns: Background image name
+    ///
+    /// [API]: https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
     func imageFromIcon(name: String) -> String {
         switch name {
         case "01d":
@@ -60,11 +68,11 @@ import SwiftUI
         }
     }
     
-    ///  Return the weather direction based on weather degrees
+    ///  Return the wind direction based on degrees
     ///
     /// - Parameters:
-    ///   - degrees: Weather degrees range value
-    /// - Returns: The the weather direction
+    ///   - degrees: Wind degrees range value
+    /// - Returns: The wind direction
     func getDirectionFromDegrees(_ degrees: Int) -> String {
         if degrees > 337 || degrees <= 22 {
             return "N"
@@ -87,9 +95,9 @@ import SwiftUI
     }
     
 
-    ///  Fetches the data from [API] based on city  and updated the state
+    ///  Fetches the data from [API] based on city  and updates the state
     ///
-    /// [API]: http://ieeexplore.ieee.org/servlet/opac?punumber=4610933
+    /// [API]:  https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
    @MainActor func fetchData() async throws {
         weatherData = try await service.fetchData(city: city)
         guard let weatherData else { return }

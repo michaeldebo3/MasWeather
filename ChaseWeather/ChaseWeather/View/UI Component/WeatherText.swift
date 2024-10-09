@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// `WeatherText` struct produces a Text widget that is stylized to show black text with subtle white background during the day. When it is nighttime, the text is white with a subtle black background. This text coloring and background contrast enhances readability.
 struct WeatherText: View {
     var text: String
     var isDay: Bool

@@ -9,8 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     
+    /// Handles location related permisisions as well as last known location.
     @StateObject private var locationManager = LocationManager()
+    /// Contains the user default `LAST_CITY_SEARCHED` value.
     @State var city = LAST_CITY_SEARCHED
+    /// Determines when to display the WeatherDisplay view.
     @State var isShowingWeather = false
     let vm = HomeViewModel(service: NetworkService())
     @State var error: Error? = nil
@@ -54,6 +57,7 @@ struct HomeView: View {
         .errorAlert(error: $error)
     }
     
+    /// Sets the `LAST_CITY_SEARCHED` to the name of the user's location when possible, e.g. after appropriate permissions have been given. Otherwise an error is handled. If there is no error, then the DisplayWeather view is launched.
     func getWeatherByCoordinates() async {
         if let coordinate = locationManager.lastKnownLocation {
             do {

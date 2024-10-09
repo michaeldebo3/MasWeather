@@ -73,6 +73,7 @@ struct WeatherDisplay: View {
 }
 
 extension View {
+    /// Function produces an error alert when an error thrown is detected. There is  a simple "OK" button for dismissing the alert.
     func errorAlert(error: Binding<Error?>, buttonTitle: String = "OK") -> some View {
         let localizedAlertError = LocalizedAlertError(error: error.wrappedValue)
         return alert(isPresented: .constant(localizedAlertError != nil), error: localizedAlertError) { _ in
@@ -98,6 +99,7 @@ struct LocalizedAlertError: LocalizedError {
 }
 
 extension String {
+    ///Returns a string of all lowercased characters except for the first character, which is capitalized.
     var capitalizedSentence: String {
         let firstLetter = self.prefix(1).capitalized
         let remainingLetters = self.dropFirst().lowercased()

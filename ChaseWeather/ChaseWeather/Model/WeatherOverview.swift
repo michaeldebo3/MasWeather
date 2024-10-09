@@ -6,17 +6,14 @@
 //
 
 struct WeatherOverview: Codable, Equatable {
-    let id: Int
-    let overview: String
+    /// `summary` is shown on WeatherDisplay view.
     let summary: String
     let iconCode: String
 }
 
 extension WeatherOverview {
     enum CodingKeys: String, CodingKey {
-        case overview = "main"
         case iconCode = "icon"
         case summary = "description"
-        case id
     }
 }
